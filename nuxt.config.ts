@@ -37,9 +37,4 @@ export default defineNuxtConfig({
   },
   modules: [
   ],
-  generate: {
-    routes: [
-      '/rss.xml',
-    ]
-  }
 });
