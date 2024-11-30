@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined');
+*, :root, ::before, ::after {
+    --primary-hsl: 22, 100%, 50%;
+    --secondary-hsl: 22, 100%, 96%;
+    --base-hsl: 220, 51%, 17%;
+    
+
+    --primary-color: hsl(var(--primary-hsl), 1);
+    --primary-color-80: hsl(var(--primary-hsl), 0.8);
+
+    --base-color: hsl(var(--base-hsl), 1);
+    --base-color-90: hsl(var(--base-hsl), 0.9);
+    --base-color-10: hsl(var(--base-hsl), 0.1);
+
+    --secondary-color: hsl(var(--secondary-hsl), 1);
+    --secondary-color-30: hsl(var(--secondary-hsl), .3);
+    --body-font: 'Inter', sans-serif;	
+    --display-font: 'Inter', sans-serif;
+
+    --base-gradient: linear-gradient(to bottom, hsl(221,42%,0%) 0%, hsl(221,42%,27%) 60%, hsla(221,42%,0%) 100%);
+
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: var(--body-font);
+    line-height: 1.2em;
+    color: var(--base-color);
+}
+
+body {
+    background-color: #FFF;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--display-font);
+}
+
+img {
+    width: 100%;
+}
+
+main {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.button {
+    padding: 14px 16px;
+    font-weight: 700;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+    .button--lg {
+        padding: 14px 64px;
+    }
+
+    .button--base {
+        background-color: var(--base-color);
+        color: white;
+        span {
+            color: var(--primary-color);
+        }
+    }

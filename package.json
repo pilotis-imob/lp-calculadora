@@ -1,0 +1,23 @@
+{
+  "name": "lp_calculadora_pilotis_imoveis",
+  "version": "1.0.0",
+  "description": "Calculadora Pilotis Imóveis",
+  "type": "module",
+  "engines": {
+    "node": "18.x"
+  },
+  "scripts": {
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview"
+  },
+  "devDependencies": {
+    "sass": "^1.54.4",  
+    "nuxt": "^3.0.0-rc.11",
+    "@esbuild/win32-x64": "^0.18.0"
+  },
+  "dependencies": {
+    "path": "^0.12.7",
+    "showdown": "^2.1.0"
+  }
+}
