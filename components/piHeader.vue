@@ -9,7 +9,7 @@
                             <nuxt-link to="/" class="main-nav__link">Imóveis</nuxt-link>
                         </li>
                         <li class="main-nav__item">
-                            <nuxt-link to="/inteligencia" class="main-nav__link">Inteligência Imobiliária</nuxt-link>
+                            <nuxt-link to="https://teste.com/inteligencia" class="main-nav__link">Inteligência Imobiliária</nuxt-link>
                         </li>
                     </ul>
                     <botaoAnuncie />
