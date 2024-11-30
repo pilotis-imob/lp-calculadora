@@ -15,6 +15,19 @@
               <span class="material-symbols-outlined steps__chevron" v-if="i < steps.length-1">chevron_right</span>
             </div>
           </div>
+          <div class="steps__fields">
+            <div class="steps__field steps__field--select" v-for="(list, index) in  data.selects" v-bind:key="list.variable">
+              <button class="steps__select-trigger" :class="{'steps__select-trigger--opened': list.show}" @click="list.show = !list.show" v-if="index == data.step">
+                <span class="material-symbols-outlined">{{ list.icon }}</span>
+                {{ data[list.variable]?findValue(list):list.label }}
+                <span class="material-symbols-outlined chevron">keyboard_arrow_down</span>
+              </button>
+              <div class="steps__field-list" v-if="index == data.step && list.show">
+                <span class="material-symbols-outlined chevron">keyboard_arrow_down</span>
+                <button class="steps__field-item" v-for="option in list.options" v-bind:key="option.value" @click="data[list.variable] = option.value; list.show = false">{{ option.label }}</button>
+              </div>
+            </div>
+          </div>
           <nuxt-link class="button button--base button--lg" @click="data.step++">Próximo</nuxt-link>
         </div>
       </div>
@@ -26,12 +39,128 @@
 
 <script setup>
 const data = reactive({
+  tipo: '',
+  bairro: '',
   suites: 0,
   vagas: 0,
   metragem: 0,
   valor: 0,
   valorFinal: 0,
-  step: 0
+  step: 0,
+  selects: [
+  {
+    variable: 'tipo',
+    icon: 'home',
+    label: 'Tipo de imóvel',
+    show: false,
+    options: [
+      {
+        value: 'apartamento',
+        label: 'Apartamento'
+      },
+      {
+        value: 'casa',
+        label: 'Casa'
+      },
+      {
+        value: 'condominio',
+        label: 'Casa em condomínio'
+      },
+      {
+        value: 'kitnet',
+        label: 'Kitnet'
+      },
+    ]
+  },
+  {
+    variable: 'bairro',
+    icon: 'location_on',
+    label: 'Bairro',
+    show: false,
+    options: [
+      {
+        "value": "ASA SUL",
+        "label": "Asa sul"
+      },
+      {
+        "value": "ASA NORTE",
+        "label": "Asa norte"
+      },
+      {
+        "value": "SUDOESTE",
+        "label": "Sudoeste"
+      },
+      {
+        "value": "NOROESTE",
+        "label": "Noroeste"
+      },
+      {
+        "value": "OCTOGONAL",
+        "label": "Octogonal"
+      },
+      {
+        "value": "AGUAS CLARAS",
+        "label": "Águas claras"
+      },
+      {
+        "value": "GUARA",
+        "label": "Guará"
+      },
+      {
+        "value": "CRUZEIRO",
+        "label": "Cruzeiro"
+      }
+    ]
+  },
+  {
+    variable: 'suites',
+    icon: 'bed',
+    label: 'Quantidade de suítes',
+    show: false,
+    options: [
+      {
+        value: '0',
+        label: '0 suítes'
+      },
+      {
+        value: '1',
+        label: '1 suítes'
+      },
+      {
+        value: '2',
+        label: '2 suítes'
+      },
+      {
+        value: '3',
+        label: '3+ suítes'
+      },
+    ]
+  },
+  {
+    variable: 'vagas',
+    icon: 'directions_car',
+    label: 'Quantidade de vagas',
+    show: false,
+    options: [
+      {
+        value: '0',
+        label: '0 vagas'
+      },
+      {
+        value: '1',
+        label: '1 vagas'
+      },
+      {
+        value: '2',
+        label: '2 vagas'
+      },
+      {
+        value: '3',
+        label: '3+ vagas'
+      }
+    ]
+  },
+]
 });
 
 const steps = [
@@ -104,6 +233,10 @@ const percentuais = [
   }
 ] 
 
+const findValue = (list) => {
+  const selectedOption = list.options.find(option => option.value === data[list.variable])
+  return selectedOption ? selectedOption.label : list.label
+}
 </script>
 
 <style scoped lang="scss">
@@ -155,7 +288,7 @@ const percentuais = [
     flex-flow: column nowrap;
     align-items: flex-start;
     gap: 30px;
-    z-index: 1;
+    z-index: 10;
     position: relative;
   }
 
@@ -222,6 +355,68 @@ const percentuais = [
         border-color: hsla(158, 56%, 50%, 1);
         span {
           color: white;
+        }
+      }
+    }
+
+    .steps__fields {
+      width: 100%;
+    }
+
+    .steps__field {
+      width: 100%;
+      position: relative;
+      .chevron {
+        position: absolute;
+        top: 24px;
+        right: 40px;
+        color: hsla(224, 13%, 39%, 1);
+      }
+    }
+
+    .steps__select-trigger {
+      padding: 24px 40px;
+      display: flex;
+      flex-flow: row nowrap;
+      gap: 20px;
+      align-items: center;
+      width: 100%;
+      border: none;
+      background-color: white;
+      color: hsla(0, 0%, 21%, 1);
+      font-weight: 700;
+      position: relative;
+      cursor: pointer;
+      span {
+        color: hsla(220, 49%, 49%, 1);
+      }
+    }
+
+    .steps__field-list {
+      z-index: 10;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: white;
+      .chevron {
+        transform: rotateX(180deg);
+      }
+      button {
+        padding: 24px 40px;
+        display: flex;
+        flex-flow: row nowrap;
+        gap: 20px;
+        align-items: center;
+        width: 100%;
+        border: none;
+        background-color: white;
+        color: hsla(0, 0%, 21%, 1);
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.1s ease-out;
+        &:hover {
+          background-color: hsla(220, 49%, 49%, 0.1);
         }
       }
     }
