@@ -27,8 +27,13 @@
                 <button class="steps__field-item" v-for="option in list.options" v-bind:key="option.value" @click="data[list.variable] = option.value; list.show = false">{{ option.label }}</button>
               </div>
             </div>
+            <div class="steps__field" v-if="data.step == 4">
+              <input type="number" class="steps__input" v-model="data.metragem" placeholder="Área privativa M2"/>
+              <span class="material-symbols-outlined steps__input-icon">square_foot</span>
+            </div>
           </div>
-          <nuxt-link class="button button--base button--lg" @click="data.step++">Próximo</nuxt-link>
+          <nuxt-link class="button button--base button--lg" @click="data.step++" v-if="data.step<=3">Próximo</nuxt-link>
+          <nuxt-link class="button button--base button--lg" @click="calcular" v-if="data.step==4">Calcular</nuxt-link>
         </div>
       </div>
       <comoCalculamos />
@@ -38,6 +43,8 @@
 </template>
 
 <script setup>
+const router = useRouter()
+
 const data = reactive({
   tipo: '',
   bairro: '',
@@ -237,6 +244,23 @@ const findValue = (list) => {
   const selectedOption = list.options.find(option => option.value === data[list.variable])
   return selectedOption ? selectedOption.label : list.label
 }
+
+const calcular = () => {
+  const bairro = bairros.find(b => b.bairro === data.bairro);
+  const modifier = data.metragem >= 51 ? bairro.maior : bairro.menor;
+  data.valor = data.metragem * modifier;
+  data.valorFinal = data.valor;
+  if(data.suites > 0) {
+    const percent = percentuais.find(b => b.numero == data.suites);
+    data.valorFinal += (data.valor * percent.valor)
+  }
+  if(data.vagas > 0) {
+    const percent = percentuais.find(b => b.numero == data.vagas);
+    data.valorFinal += (data.valor * percent.valor)
+  }
+  router.push('/calculo?valor='+data.valorFinal.toFixed(0))
+
+}
 </script>
 
 <style scoped lang="scss">
@@ -419,5 +443,26 @@ const findValue = (list) => {
           background-color: hsla(220, 49%, 49%, 0.1);
         }
       }
+    }
+
+    .steps__input {
+      padding: 24px 40px 24px 76px;
+      display: flex;
+      flex-flow: row nowrap;
+      gap: 20px;
+      align-items: center;
+      width: 100%;
+      border: none;
+      background-color: white;
+      color: hsla(0, 0%, 21%, 1);
+      font-weight: 700;
+      position: relative;
+    }
+
+    .steps__input-icon {
+      position: absolute;
+      top: 18px;
+      left: 40px;
+      color: hsla(220, 49%, 49%, 1);
     }
 </style>
