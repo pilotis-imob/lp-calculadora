@@ -16,7 +16,7 @@
             </div>
           </div>
           <div class="steps__fields">
-            <div class="steps__field steps__field--select" v-for="(list, index) in  data.selects" v-bind:key="list.variable">
+            <div class="steps__field steps__field--select" :class="{'steps__field--error': list.error && !data[list.variable]}" v-for="(list, index) in  data.selects" v-bind:key="list.variable">
               <button class="steps__select-trigger" :class="{'steps__select-trigger--opened': list.show}" @click="list.show = !list.show" v-if="index == data.step">
                 <span class="material-symbols-outlined">{{ list.icon }}</span>
                 {{ data[list.variable]?findValue(list):list.label }}
@@ -27,12 +27,12 @@
                 <button class="steps__field-item" v-for="option in list.options" v-bind:key="option.value" @click="data[list.variable] = option.value; list.show = false">{{ option.label }}</button>
               </div>
             </div>
-            <div class="steps__field" v-if="data.step == 4">
+            <div class="steps__field" :class="{'steps__field--error': data.metragemError && !data.metragem}" v-if="data.step == 4">
               <input type="number" class="steps__input" v-model="data.metragem" placeholder="Área privativa M2"/>
               <span class="material-symbols-outlined steps__input-icon">square_foot</span>
             </div>
           </div>
-          <nuxt-link class="button button--base button--lg" @click="data.step++" v-if="data.step<=3">Próximo</nuxt-link>
+          <nuxt-link class="button button--base button--lg" @click="proximoPasso()" v-if="data.step<=3">Próximo</nuxt-link>
           <nuxt-link class="button button--base button--lg" @click="calcular" v-if="data.step==4">Calcular</nuxt-link>
         </div>
       </div>
@@ -51,6 +51,7 @@ const data = reactive({
   suites: 0,
   vagas: 0,
   metragem: 0,
+  metragemError: false,
   valor: 0,
   valorFinal: 0,
   step: 0,
@@ -60,6 +61,7 @@ const data = reactive({
     icon: 'home',
     label: 'Tipo de imóvel',
     show: false,
+    error: false,
     options: [
       {
         value: 'apartamento',
@@ -84,6 +86,7 @@ const data = reactive({
     icon: 'location_on',
     label: 'Bairro',
     show: false,
+    error: false,
     options: [
       {
         "value": "ASA SUL",
@@ -124,6 +127,7 @@ const data = reactive({
     icon: 'bed',
     label: 'Quantidade de suítes',
     show: false,
+    error: false,
     options: [
       {
         value: '0',
@@ -148,6 +152,7 @@ const data = reactive({
     icon: 'directions_car',
     label: 'Quantidade de vagas',
     show: false,
+    error: false,
     options: [
       {
         value: '0',
@@ -246,20 +251,34 @@ const findValue = (list) => {
 }
 
 const calcular = () => {
-  const bairro = bairros.find(b => b.bairro === data.bairro);
-  const modifier = data.metragem >= 51 ? bairro.maior : bairro.menor;
-  data.valor = data.metragem * modifier;
-  data.valorFinal = data.valor;
-  if(data.suites > 0) {
-    const percent = percentuais.find(b => b.numero == data.suites);
-    data.valorFinal += (data.valor * percent.valor)
+  if(data.metragem){
+    const bairro = bairros.find(b => b.bairro === data.bairro);
+    const modifier = data.metragem >= 51 ? bairro.maior : bairro.menor;
+    data.valor = data.metragem * modifier;
+    data.valorFinal = data.valor;
+    if(data.suites > 0) {
+      const percent = percentuais.find(b => b.numero == data.suites);
+      data.valorFinal += (data.valor * percent.valor)
+    }
+    if(data.vagas > 0) {
+      const percent = percentuais.find(b => b.numero == data.vagas);
+      data.valorFinal += (data.valor * percent.valor)
+    }
+    router.push('/calculo?valor='+data.valorFinal.toFixed(0))
+  } else {
+    data.metragemError = true;
   }
-  if(data.vagas > 0) {
-    const percent = percentuais.find(b => b.numero == data.vagas);
-    data.valorFinal += (data.valor * percent.valor)
-  }
-  router.push('/calculo?valor='+data.valorFinal.toFixed(0))
 
+}
+
+const proximoPasso = () => {
+  const active = data.selects[data.step];
+  const verify = (data[active.variable]);
+  if(verify) {
+    data.step++
+  } else {
+    data.selects[data.step].error = true;
+  }
 }
 </script>
 
@@ -390,6 +409,7 @@ const calcular = () => {
     .steps__field {
       width: 100%;
       position: relative;
+      transition: all 0.2s ease-in-out;
       .chevron {
         position: absolute;
         top: 24px;
@@ -397,6 +417,10 @@ const calcular = () => {
         color: hsla(224, 13%, 39%, 1);
       }
     }
+
+      .steps__field--error {
+        box-shadow: 0px 0px 16px var(--primary-color);
+      }
 
     .steps__select-trigger {
       padding: 24px 40px;

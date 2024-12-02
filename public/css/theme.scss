@@ -61,6 +61,15 @@ main {
         padding: 14px 64px;
     }
 
+    .button--xl {
+        padding: 28px 32px;
+        font-size: 2em;
+        border-radius: 20px;
+        span {
+            font-size: 1em;
+        }
+    }
+
     .button--base {
         background-color: var(--base-color);
         color: white;
@@ -68,3 +77,10 @@ main {
             color: var(--primary-color);
         }
     }
+
+.align-center {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+}
