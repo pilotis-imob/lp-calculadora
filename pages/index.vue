@@ -9,9 +9,11 @@
           <p>Use nossa calculadora para descobrir o aluguel do seu imóvel em até 3 minutos</p>
           <div class="calculadora__steps steps">
             <div class="steps__step" :class="{ 'steps__step--active' : i == data.step, 'steps__step--done' : i < data.step }" v-for="(step, i) in steps" v-bind:key="step">
-              <div class="steps__icon" v-if="i >= data.step">{{ i }}</div>
-              <div class="steps__icon" v-else><span class="material-symbols-outlined">check</span></div>
-              <div class="steps__text">{{ step }}</div>
+              <div class="steps__number">
+                <div class="steps__icon" v-if="i >= data.step">{{ i }}</div>
+                <div class="steps__icon" v-else><span class="material-symbols-outlined">check</span></div>
+                <div class="steps__text">{{ step }}</div>
+              </div>
               <span class="material-symbols-outlined steps__chevron" v-if="i < steps.length-1">chevron_right</span>
             </div>
           </div>
@@ -57,31 +59,6 @@ const data = reactive({
   step: 0,
   selects: [
   {
-    variable: 'tipo',
-    icon: 'home',
-    label: 'Tipo de imóvel',
-    show: false,
-    error: false,
-    options: [
-      {
-        value: 'apartamento',
-        label: 'Apartamento'
-      },
-      {
-        value: 'casa',
-        label: 'Casa'
-      },
-      {
-        value: 'condominio',
-        label: 'Casa em condomínio'
-      },
-      {
-        value: 'kitnet',
-        label: 'Kitnet'
-      },
-    ]
-  },
-  {
     variable: 'bairro',
     icon: 'location_on',
     label: 'Bairro',
@@ -123,8 +100,33 @@ const data = reactive({
     ]
   },
   {
-    variable: 'suites',
+    variable: 'quartos',
     icon: 'bed',
+    label: 'Quantidade de quartos',
+    show: false,
+    error: false,
+    options: [
+      {
+        value: '0',
+        label: '0 quartos'
+      },
+      {
+        value: '1',
+        label: '1 quartos'
+      },
+      {
+        value: '2',
+        label: '2 quartos'
+      },
+      {
+        value: '3',
+        label: '3+ quartos'
+      },
+    ]
+  },
+  {
+    variable: 'suites',
+    icon: 'shower',
     label: 'Quantidade de suítes',
     show: false,
     error: false,
@@ -176,8 +178,8 @@ const data = reactive({
 });
 
 const steps = [
-  'Tipo de imóvel',
   'Bairro',
+  'Quartos',
   'Suítes',
   'Vagas',
   'Área M²'
@@ -297,6 +299,15 @@ const proximoPasso = () => {
       border-radius: 0 393px 0 0;
       z-index: 0;
     }
+    @media (max-width: 1105px) {
+      padding-top: 0;
+      h2, p {
+        text-align: center;
+      }
+      &::before {
+          width: 140%;
+      }
+    }
    }
 
    .graph {
@@ -308,6 +319,9 @@ const proximoPasso = () => {
     border: 1px solid hsla(160, 33%, 2%, 0.32);
     z-index: 2;
     border-radius: 0 0 0 300px;
+    @media (max-width: 1105px) {
+      display: none;
+    }
    }
 
    .graph-image {
@@ -321,6 +335,9 @@ const proximoPasso = () => {
     background-image: url('/images/vista.webp');
     background-position: top right;
     background-size: cover;
+    @media (max-width: 1105px) {
+      display: none;
+    }
    }
 
 
@@ -333,6 +350,9 @@ const proximoPasso = () => {
     gap: 30px;
     z-index: 10;
     position: relative;
+    @media (max-width: 1105px) {
+      width: 100%;
+    }
   }
 
   .steps {
@@ -347,6 +367,16 @@ const proximoPasso = () => {
       flex-flow: row nowrap;
       align-items: center;
       gap: 7px;
+    }
+
+    .steps__number {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      gap: 7px;
+      @media (max-width: 1105px) {
+        flex-flow: column nowrap;
+      }
     }
 
     .steps__icon {

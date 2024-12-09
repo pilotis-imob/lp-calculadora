@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined');
 *, :root, ::before, ::after {
-    --primary-hsl: 22, 100%, 50%;
+    --primary-hsl: 25, 100%, 62%;
     --secondary-hsl: 22, 100%, 96%;
     --base-hsl: 220, 51%, 17%;
     
@@ -55,6 +55,9 @@ main {
     border-radius: 10px;
     text-decoration: none;
     cursor: pointer;
+    @media (max-width: 1105px) {
+        justify-content: center;
+    }
 }
 
     .button--lg {
@@ -67,6 +70,14 @@ main {
         border-radius: 20px;
         span {
             font-size: 1em;
+        }
+        @media (max-width: 1105px) {
+            padding: 14px 16px;
+            border-radius: 10px;
+            font-size: 1em;
+            span {
+                font-size: 1em;
+            }
         }
     }
 

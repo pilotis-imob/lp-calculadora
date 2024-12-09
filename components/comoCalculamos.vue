@@ -21,6 +21,10 @@
     padding-block: 80px;
     background-color: var(--primary-color);
     * {color: white;}
+    @media (max-width: 1105px) {
+      padding-block: 45px;
+      * {color: hsla(0, 0%, 21%, 1);}
+    }
   }
 
     .como-calculamos__content {
@@ -28,6 +32,10 @@
       flex-flow: row nowrap;
       align-items: center;
       gap: 160px;
+      @media (max-width: 1105px) {
+        flex-flow: column-reverse nowrap;
+        gap: 24px;
+      }
     }
 
     .como-calculamos__info {
@@ -35,9 +43,16 @@
       display: flex;
       flex-flow: column nowrap;
       gap: 24px;
+      @media (max-width: 1105px) {
+        width: 100%;
+        text-align: center;
+      }
     }
 
     .como-calculamos__img {
       width: 212px;
+      @media (max-width: 1105px) {
+        width: 136px;
+      }
     }
 </style>

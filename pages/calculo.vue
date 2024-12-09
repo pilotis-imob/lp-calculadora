@@ -56,6 +56,9 @@ const valorMaximo = (valorNumerico * 1.1).toLocaleString('pt-BR', {
 <style scoped lang="scss">
   .valores {
     padding-block: 86px 110px;
+    @media (max-width: 1105px) {
+      padding-block: 46px;
+    }
   }
 
     .valores__content {
@@ -63,6 +66,11 @@ const valorMaximo = (valorNumerico * 1.1).toLocaleString('pt-BR', {
       display: flex;
       flex-flow: row nowrap;
       justify-content: space-between;
+      @media (max-width: 1105px) {
+        flex-flow: column nowrap;
+        padding: 24px;
+        gap: 20px;
+      }
     }
 
   .valor {
@@ -75,12 +83,18 @@ const valorMaximo = (valorNumerico * 1.1).toLocaleString('pt-BR', {
       font-size: 1.875em;
       font-weight: 700;
       color: hsla(0, 0%, 21%, 1);
+      @media (max-width: 1105px) {
+        font-size: 1.25em;
+      }
     }
 
     .valor__number {
       font-size: 5em;
       font-weight: 700;
       color: hsla(22, 100%, 50%, 1);
+      @media (max-width: 1105px) {
+        font-size: 3.375em;
+      }
     }
 
   .valor--small {
@@ -88,9 +102,15 @@ const valorMaximo = (valorNumerico * 1.1).toLocaleString('pt-BR', {
     .valor__text {
       font-size: 1.125em;
       font-weight: 400;
+      @media (max-width: 1105px) {
+        font-size: 0.75em;
+      }
     }
     .valor__number {
       font-size: 2.5em;
+      @media (max-width: 1105px) {
+        font-size: 1.75em;
+      }
     }
   }
 
@@ -98,6 +118,9 @@ const valorMaximo = (valorNumerico * 1.1).toLocaleString('pt-BR', {
       display: flex;
       flex-flow: column nowrap;
       justify-content: space-between;
+      @media (max-width: 1105px) {
+        gap: 12px;
+      }
   }
 
     .sugestoes__text {
@@ -109,6 +132,9 @@ const valorMaximo = (valorNumerico * 1.1).toLocaleString('pt-BR', {
       display: flex;
       flex-flow: row nowrap;
       gap: 40px;
+      @media (max-width: 1105px) {
+        gap: 30px;
+      }
     }
 
     .sugestoes__spacer {

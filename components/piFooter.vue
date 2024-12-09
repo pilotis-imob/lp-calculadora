@@ -5,22 +5,18 @@
                 <img src="/images/logo-negativa.svg" alt="Pilotis Imóveis" class="logo">
                 <ul class="footer__socials">
                     <li class="footer__social-item">
-                        <a href="" class="footer__social-link"><img src="/images/whatsapp.png" alt="Whatsapp"></a>
+                        <a href="https://api.whatsapp.com/send/?phone=556135757410&text=Ol%C3%A1%21&type=phone_number&app_absent=0" class="footer__social-link"><img src="/images/whatsapp.png" alt="Whatsapp"></a>
                     </li>
                     <li class="footer__social-item">
-                        <a href="" class="footer__social-link footer__social-link--padding"><img src="/images/facebook.png" alt="Facebook"></a>
-                    </li>
-                    <li class="footer__social-item">
-                        <a href="" class="footer__social-link footer__social-link--padding"><img src="/images/instagram.png" alt="Instagram"></a>
+                        <a href="https://www.instagram.com/pilotisimoveis/" class="footer__social-link footer__social-link--padding"><img src="/images/instagram.png" alt="Instagram"></a>
                     </li>
                 </ul>
             </div>
             <nav class="footer__nav">
-                <nuxt-link class="footer__link">Lançamentos</nuxt-link>
-                <nuxt-link class="footer__link">Fale Conosco</nuxt-link>
-                <nuxt-link class="footer__link">Aluguéis</nuxt-link>
-                <nuxt-link class="footer__link">Calculadora Pilotis</nuxt-link>
-                <nuxt-link class="footer__link">Imóveis</nuxt-link>
+                <nuxt-link to="https://pilotis.com.br/lancamentos" target="_blank" class="footer__link">Lançamentos</nuxt-link>
+                <nuxt-link to="https://api.whatsapp.com/send/?phone=556135757418&text=Ol%C3%A1%21&type=phone_number&app_absent=0" target="_blank" class="footer__link">Aluguéis</nuxt-link>
+                <nuxt-link to="https://api.whatsapp.com/send/?phone=556135757410&text=Ol%C3%A1%21&type=phone_number&app_absent=0" target="_blank" class="footer__link">Fale Conosco</nuxt-link>
+                <nuxt-link to="/" class="footer__link">Calculadora Pilotis</nuxt-link>
             </nav>
         </div>
     </footer>
@@ -37,6 +33,15 @@
         * {
             color: white;
         }
+        @media (max-width: 1105px) {
+            padding-block: 47px;
+        }
+        .center {
+            @media (max-width: 1105px) {
+                display: flex;
+                justify-content: space-between
+            }
+        }
     }
 
         .footer__head {
@@ -45,11 +50,19 @@
             align-items: center;
             justify-content: space-between;
             padding-bottom: 70px;
+            @media (max-width: 1105px) {
+                flex-flow: column nowrap;
+                align-items: flex-start;
+                padding-bottom: 0;
+            }
         } 
 
         .logo {
             height: 95px;
             width: auto;
+            @media (max-width: 1105px) {
+                height: 67px;
+            }
         } 
 
         .footer__socials {
@@ -75,5 +88,12 @@
             display: grid;
             grid-template-columns: 160px 160px;
             gap: 34px 12px;
+            @media (max-width: 1105px) {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .footer__link {
+            text-decoration: none;
         }
 </style>

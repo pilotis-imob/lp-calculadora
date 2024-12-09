@@ -43,6 +43,9 @@
       background: var(--secondary-color);
       border-radius: 0 0 0 393px;
       z-index: 0;
+      @media (max-width: 1105px) {
+        display: none;
+      }
     }
    }
 
@@ -57,6 +60,9 @@
       height: 412px;
       background-size: cover;
       background-position: center;
+      @media (max-width: 1105px) {
+        height: 110px;
+      }
     }
 
       .mosaico__item--1 {
@@ -79,6 +85,10 @@
       padding-block: 97px;
       position: relative;
       z-index: 1;
+      @media (max-width: 1105px) {
+        flex-flow: column nowrap;
+        padding-block: 45px;
+      }
     }
 
     .investimento__info {
@@ -88,6 +98,10 @@
       gap: 16px;
       h2 {
         color: var(--primary-color);
+      }
+      @media (max-width: 1105px) {
+        width: 100%;
+        text-align: center;
       }
     }
 
@@ -106,10 +120,16 @@
         position: relative;
         z-index: 2;
       }
+      @media (max-width: 1105px) {
+        padding-top: 160px;
+      }
     }
 
     .investimento__logo {
       height: 82px;
+      @media (max-width: 1105px) {
+        height: 44px;
+      }
     }
 
     .investimento__pic-1 {
@@ -123,6 +143,10 @@
       right: calc(50% + 5px);
       border-radius: 200px;
       z-index: 1;
+      @media (max-width: 1105px) {
+        height: 124px;
+        width: 79px;
+      }
     }
 
     .investimento__pic-2 {
@@ -136,5 +160,9 @@
       left: calc(50% + 5px);
       border-radius: 200px;
       z-index: 1;
+      @media (max-width: 1105px) {
+        height: 166px;
+        width: 107px;
+      }
     }
 </style>
