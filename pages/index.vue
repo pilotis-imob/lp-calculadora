@@ -57,6 +57,7 @@ const data = reactive({
   valor: 0,
   valorFinal: 0,
   step: 0,
+  quartos: 0,
   selects: [
   {
     variable: 'bairro',
@@ -266,11 +267,21 @@ const calcular = () => {
       const percent = percentuais.find(b => b.numero == data.vagas);
       data.valorFinal += (data.valor * percent.valor)
     }
-    router.push('/calculo?valor='+data.valorFinal.toFixed(0))
+    router.push('/calculo?valor='+data.valorFinal.toFixed(0)+buildParameters())
   } else {
     data.metragemError = true;
   }
+}
 
+const buildParameters = () => {
+  let parameters = '';
+  const bairro = data.selects[0].options.find(option => option.value === data.bairro); 
+  parameters += `&bairro=${bairro.label}`;
+  parameters += `&quartos=${data.quartos}`;
+  parameters += `&suites=${data.suites}`;
+  parameters += `&vagas=${data.vagas}`;
+  parameters += `&area=${data.metragem}`;
+  return parameters
 }
 
 const proximoPasso = () => {

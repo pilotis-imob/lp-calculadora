@@ -1,6 +1,50 @@
 <template>
   <section>
     <section class="valores">
+      <div class="center" size="wide">
+        <div class="pills">
+          <div class="pill">
+            <span class="material-symbols-outlined">location_on</span>
+            <span class="pill__spacer"></span>
+            <div class="pill__content">
+              <p class="pill__brow">Bairro</p>
+              <p class="pill__info">{{ route.query?route.query.bairro:'' }}</p>
+            </div>
+          </div>
+          <div class="pill">
+            <span class="material-symbols-outlined">bed</span>
+            <span class="pill__spacer"></span>
+            <div class="pill__content">
+              <p class="pill__brow">Quartos</p>
+              <p class="pill__info">{{ route.query?route.query.quartos:'' }}</p>
+            </div>
+          </div>
+          <div class="pill">
+            <span class="material-symbols-outlined">shower</span>
+            <span class="pill__spacer"></span>
+            <div class="pill__content">
+              <p class="pill__brow">Suítes</p>
+              <p class="pill__info">{{ route.query?route.query.suites:'' }}</p>
+            </div>
+          </div>
+          <div class="pill">
+            <span class="material-symbols-outlined">directions_car</span>
+            <span class="pill__spacer"></span>
+            <div class="pill__content">
+              <p class="pill__brow">Vagas</p>
+              <p class="pill__info">{{ route.query?route.query.vagas:'' }}</p>
+            </div>
+          </div>
+          <div class="pill">
+            <span class="material-symbols-outlined">square_foot</span>
+            <span class="pill__spacer"></span>
+            <div class="pill__content">
+              <p class="pill__brow">Metragem</p>
+              <p class="pill__info">{{ route.query?route.query.area:'' }} m²</p>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="center valores__content" size="wide">
         <div class="valor">
           <p class="valor__text">Valor sugerido</p>
@@ -54,6 +98,52 @@ const valorMaximo = (valorNumerico * 1.1).toLocaleString('pt-BR', {
 </script>
 
 <style scoped lang="scss">
+  .pills {
+    gap: 20px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    @media (max-width: 1105px) {
+      justify-content: flex-start;
+      padding-inline: 24px;
+    }
+  }
+
+  .pill {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    padding: 12px 18px;
+    gap: 11px;
+    background-color: hsla(0, 0%, 95%, 1);
+    border-radius: 36px;
+    .material-symbols-outlined {
+      color: var(--primary-color);
+    }
+  }
+
+    .pill__spacer {
+      background-color: hsla(0, 0%, 85%, 1);
+      height: 100%;
+      width: 1.5px;
+    }
+
+    .pill__content {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+      .pill__brow {
+        font-size: .75em;
+        font-weight: 300;
+      }
+
+      .pill__info {
+        font-size: 1.125em;
+        font-weight: 700;
+      }
+
   .valores {
     padding-block: 86px 110px;
     @media (max-width: 1105px) {
