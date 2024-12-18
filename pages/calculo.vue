@@ -66,7 +66,7 @@
         </div>
       </div>
       <div class="align-center">
-        <botao-anuncie size="xl"></botao-anuncie>
+        <botao-anuncie size="xl" :mensagem="`O valor estimado de aluguel para o seu imovel em ${route.query.bairro.toUpperCase()} de ${route.query.quartos} QUARTOS com ${route.query.suites} SUITE , ${route.query.vagas} VAGA e ${route.query.area} metros é de: R$ ${valor}`"></botao-anuncie>
       </div>
     </section>
     <section>
