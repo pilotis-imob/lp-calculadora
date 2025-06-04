@@ -14,7 +14,7 @@
             </div>
             <nav class="footer__nav">
                 <nuxt-link to="https://pilotis.com.br/lancamentos" target="_blank" class="footer__link">Lançamentos</nuxt-link>
-                <nuxt-link to="https://api.whatsapp.com/send/?phone=556135757418&text=Ol%C3%A1%21&type=phone_number&app_absent=0" target="_blank" class="footer__link">Aluguéis</nuxt-link>
+                <nuxt-link to="https://api.whatsapp.com/send/?phone=556135757414&text=Ol%C3%A1%21&type=phone_number&app_absent=0" target="_blank" class="footer__link">Aluguéis</nuxt-link>
                 <nuxt-link to="https://api.whatsapp.com/send/?phone=556135757410&text=Ol%C3%A1%21&type=phone_number&app_absent=0" target="_blank" class="footer__link">Fale Conosco</nuxt-link>
                 <nuxt-link to="/" class="footer__link">Calculadora Pilotis</nuxt-link>
             </nav>
