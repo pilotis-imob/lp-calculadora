@@ -256,7 +256,7 @@ const findValue = (list) => {
 const calcular = () => {
   if(data.metragem){
     const bairro = bairros.find(b => b.bairro === data.bairro);
-    const modifier = data.metragem >= 51 ? bairro.maior : bairro.menor;
+    const modifier = data.metragem >= 51 ? bairro.maior : bairro.menor51m2;
     data.valor = data.metragem * modifier;
     data.valorFinal = data.valor;
     if(data.suites > 0) {
